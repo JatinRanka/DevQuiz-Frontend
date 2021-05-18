@@ -21,7 +21,7 @@ const quizReducer = (state: typeof quizInitialState, action: ACTIONTYPE) => {
 
       return {
         ...state,
-        score: payload.score,
+        score: state.score + payload.score,
       };
     }
 

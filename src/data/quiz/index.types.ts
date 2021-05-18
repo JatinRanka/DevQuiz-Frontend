@@ -4,10 +4,10 @@ export type Option = {
 };
 
 export type Question = {
-  question: string;
+  questionText: string;
   points: number;
   options: Option[];
-  negativePoint?: number;
+  negativePoints?: number;
 };
 
 export type Quiz = {

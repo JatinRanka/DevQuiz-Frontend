@@ -5,10 +5,10 @@ const quiz: Quiz = {
   playTime: "5 minutes",
   questions: [
     {
-      question:
+      questionText:
         "How many avengers were there in first Avengers movie released in 2012?",
       points: 5,
-      negativePoint: 2,
+      negativePoints: 2,
       options: [
         {
           text: "22",
@@ -17,14 +17,22 @@ const quiz: Quiz = {
         {
           text: "6",
           isRight: true
+        },
+        {
+          text: "89",
+          isRight: false
+        },
+        {
+          text: "67",
+          isRight: false
         }
       ]
     },
     {
-      question:
+      questionText:
         "What was Dr. Strange doing during the fight of New York in 2012?",
       points: 15,
-      negativePoint: 22,
+      negativePoints: 22,
       options: [
         {
           text: "getting trained as master of the mystic arts",
@@ -37,7 +45,7 @@ const quiz: Quiz = {
       ]
     },
     {
-      question: "who's the love interest for Wanda in MCU?",
+      questionText: "who's the love interest for Wanda in MCU?",
       points: 5,
       options: [
         {

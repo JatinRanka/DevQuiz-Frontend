@@ -10,7 +10,7 @@ const QuestionComponent = ({
 }) => {
   return (
     <div>
-      <h4>{currentQuestion.question}</h4>
+      <h4>{currentQuestion.questionText}</h4>
       {currentQuestion.options.map((option) => {
         return (
           <p style={{ border: "solid 0.5px black", margin: "0.5rem" }}>

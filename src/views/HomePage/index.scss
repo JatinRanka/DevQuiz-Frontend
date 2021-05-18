@@ -1,0 +1,36 @@
+#home-page {
+  .cover-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 1rem;
+    margin: 1rem;
+
+    .description {
+      margin: 2rem 0rem;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      row-gap: 1rem;
+      text-align: center;
+    }
+  }
+  .home-page-cover-img {
+    max-width: 90%;
+  }
+
+  @media only screen and(min-width: 500px) {
+    .cover-container {
+      flex-direction: row;
+      margin: 2rem;
+
+      .description {
+        width: 50%;
+      }
+    }
+
+    .home-page-cover-img {
+      max-width: 500px;
+    }
+  }
+}
