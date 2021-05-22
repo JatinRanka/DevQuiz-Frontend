@@ -1,11 +1,14 @@
 import { createContext, useContext, useReducer, Dispatch } from "react";
+import { Quiz } from "../data/quiz/index.types";
 
 export type QuizStateType = {
   score: number;
+  quizzes: Quiz[];
 };
 
 const quizInitialState: QuizStateType = {
   score: 0,
+  quizzes: [],
 };
 
 type ACTIONTYPE =

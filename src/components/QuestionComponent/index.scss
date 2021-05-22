@@ -1,4 +1,15 @@
 #question-component-container {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    .question {
+      color: var(--primary-color);
+    }
+  }
+
   .options-list {
     margin-top: 2rem;
   }
@@ -8,5 +19,18 @@
     margin: 1rem;
     padding: 1rem;
     border-radius: 0.5rem;
+    cursor: pointer;
+
+    p {
+      pointer-events: none;
+    }
+
+    &.success {
+      background-color: lightgreen;
+    }
+
+    &.danger {
+      background-color: lightcoral;
+    }
   }
 }

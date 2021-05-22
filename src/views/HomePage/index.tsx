@@ -1,9 +1,20 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 import homePageImage from "../../assets/images/home-page.svg";
 import { QuizzesList } from "../../components";
 import "./index.scss";
 
 const HomePage = (): JSX.Element => {
+  const fetchQuizzes = async () => {
+    try {
+      const res = axios;
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    fetchQuizzes();
+  }, []);
+
   return (
     <div id="home-page">
       <div className="cover-container">
@@ -20,6 +31,8 @@ const HomePage = (): JSX.Element => {
       </div>
 
       <hr className="my-1" />
+
+      <p className="heading-3 my-1 quizzes-heading">Quizzes</p>
 
       <QuizzesList />
     </div>

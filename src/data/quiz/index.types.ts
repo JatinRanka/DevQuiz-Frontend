@@ -11,7 +11,7 @@ export type Question = {
 };
 
 export type Quiz = {
-  quizName: string;
-  playTime: string;
+  name: string;
   questions: Question[];
+  _id: string;
 };

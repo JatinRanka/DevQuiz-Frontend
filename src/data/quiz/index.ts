@@ -1,8 +1,8 @@
 import { Quiz } from "./index.types";
 
 const quiz: Quiz = {
-  quizName: "Marvel Cinematic Universe",
-  playTime: "5 minutes",
+  _id: "145",
+  name: "Marvel Cinematic Universe",
   questions: [
     {
       questionText:

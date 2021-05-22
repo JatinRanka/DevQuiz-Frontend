@@ -4,16 +4,13 @@
   padding: 0rem 0.5rem;
   text-align: center;
   line-height: 1.1;
+  height: 100%;
 
-  .header {
+  .loading-icon-container {
+    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-
-    .question {
-      color: var(--primary-color);
-    }
+    justify-content: center;
+    margin-top: 50%;
   }
 
   .action-btns {
