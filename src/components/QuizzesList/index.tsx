@@ -1,16 +1,24 @@
 import React from "react";
+import { useHistory } from "react-router";
+import { Quiz } from "../../data/quiz/index.types";
 import "./index.scss";
 
-let listOfQuizes = [1, 2, 3];
+const QuizzesList = ({ quizzes }: { quizzes: Quiz[] }) => {
+  const history = useHistory();
 
-const QuizzesList = () => {
   return (
     <div id="quizzes-list">
-      {listOfQuizes.map((quiz, index) => {
+      {quizzes.map((quiz, index) => {
         return (
-          <div className={`quiz shadow-xl bg-color-${index % 3}`} key={index}>
-            <p className="heading-4 bold">Quiz name</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing . </p>
+          <div
+            onClick={() => {
+              history.push(`/quizzes/${quiz._id}`);
+            }}
+            className={`quiz shadow-xl bg-color-${index % 3}`}
+            key={quiz._id}
+          >
+            <p className="heading-4 bold">{quiz.name}</p>
+            <p>{quiz.description} </p>
           </div>
         );
       })}

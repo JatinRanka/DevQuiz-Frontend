@@ -8,10 +8,13 @@ export type Question = {
   points: number;
   options: Option[];
   negativePoints?: number;
+  userSelectedAnswerIndex?: number;
 };
 
 export type Quiz = {
   name: string;
+  description: string;
   questions: Question[];
   _id: string;
+  leaderboard?: any[];
 };

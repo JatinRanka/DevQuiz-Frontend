@@ -1,14 +1,21 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import homePageImage from "../../assets/images/home-page.svg";
 import { QuizzesList } from "../../components";
+import { Quiz } from "../../data/quiz/index.types";
 import "./index.scss";
 
 const HomePage = (): JSX.Element => {
+  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+
   const fetchQuizzes = async () => {
     try {
-      const res = axios;
-    } catch (error) {}
+      const { data } = await axios.get("http://localhost:5000/api/quizzes/");
+      const { quizzes }: { quizzes: Quiz[] } = data;
+      setQuizzes(quizzes);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -34,7 +41,7 @@ const HomePage = (): JSX.Element => {
 
       <p className="heading-3 my-1 quizzes-heading">Quizzes</p>
 
-      <QuizzesList />
+      <QuizzesList quizzes={quizzes} />
     </div>
   );
 };

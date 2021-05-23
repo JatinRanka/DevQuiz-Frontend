@@ -54,6 +54,7 @@ const QuestionComponent = ({
     if (showAnswers || isTimeUp) return; // If already answers are shown or time is up.
 
     const selectedAnswer = parseInt(event.target.getAttribute("data-index"));
+    question.userSelectedAnswerIndex = selectedAnswer;
     setUserSelectedAnswerIndex(selectedAnswer);
     setShowAnswers(true);
   };
@@ -74,8 +75,8 @@ const QuestionComponent = ({
     <div id="question-component-container">
       <div className="header">
         <p className="heading-5 bold">
-          Qn: {currentQuestionIndex + 1}/{totalQuestions}{" "}
           {/* +1 since indexing starts from 0  */}
+          Qn: {currentQuestionIndex + 1}/{totalQuestions}{" "}
         </p>
         <CountdownCircleTimer
           size={50}

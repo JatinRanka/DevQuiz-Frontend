@@ -1,12 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <div className="navbar">
       <div className="navbar__left">
-        <p className="heading-2 navbar__logo">DevQuiz</p>
+        <Link to="/">
+          <p className="heading-2 navbar__logo reset-link-styles">DevQuiz</p>
+        </Link>
 
-        <ul className="navbar__link-container">
+        {/* <ul className="navbar__link-container">
           <li>
             <a className="navbar__link" href="/">
               Link 1
@@ -22,7 +25,7 @@ const NavBar = () => {
               Link 3
             </a>
           </li>
-        </ul>
+        </ul> */}
       </div>
 
       <div className="navbar__right">
