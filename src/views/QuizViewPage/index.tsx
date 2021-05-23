@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Oval } from "react-loading-icons";
 import { QuestionComponent } from "../../components";
-import { useQuizContext } from "../../context/quiz.context";
-import { useParams } from "react-router";
+import { useLocation } from "react-router";
 import axios from "axios";
-
-import "./index.scss";
 import { Quiz } from "../../data/quiz/index.types";
 import ScoreBoard from "../../components/ScoreBoard";
-import { calcluateScore } from "../../helper/common";
+import { calcluateScore, getUserId } from "../../helper/common";
+import "./index.scss";
 
 const LoadingComponent = () => {
   return (
@@ -21,11 +19,10 @@ const LoadingComponent = () => {
 const QuizViewPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const { quizId }: { quizId: string } = useParams();
-  console.log({ quizId });
-  console.log(useParams());
   const [quiz, setQuiz] = useState<Quiz | null>(null);
   const [showScoreBoard, setShowScoreBoard] = useState<boolean>(false);
+  const params = useLocation();
+  const quizId = params.pathname.split("/")[2];
 
   const fetchQuiz = async () => {
     try {
@@ -51,7 +48,7 @@ const QuizViewPage = () => {
       const { data } = await axios.post(
         `http://localhost:5000/api/quizzes/${quizId}/leaderboard`,
         {
-          userId: "60a9456db2fc9b4c3808b4a7",
+          userId: getUserId(),
           score: totalUserScore,
         }
       );

@@ -1,8 +1,12 @@
 import { Question } from "../data/quiz/index.types";
 
-export const isUserLoggedIn = () => {
+export const isUserLoggedIn = (): boolean => {
   return localStorage.getItem("userId") ? true : false;
 };
+
+export const getUserId = () => {
+  return localStorage.getItem("userId");
+}
 
 export const calcluateScore = ({
   questions,
