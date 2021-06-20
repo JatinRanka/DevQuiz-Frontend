@@ -1,10 +1,14 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { API_ENDPOINT } from "../../constants";
+import { useUsercontext } from "../../context/user.context";
+import { toast } from "../../helper/toast";
 import "./index.scss";
 
 const SignUp = () => {
   const history = useHistory();
+  const { setIsUserLoggedIn } = useUsercontext();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,19 +21,21 @@ const SignUp = () => {
       event.preventDefault();
       setIsSignUpButtonLoading(true);
 
-      const { data } = await axios.post("http://localhost:5000/api/users/", {
+      const { data, headers } = await axios.post(`${API_ENDPOINT}/users`, {
         ...formData,
       });
 
       const { user } = data;
-      console.log("signed up");
+
+      window.localStorage.setItem("Authorization", headers.authorization);
       window.localStorage.setItem("userId", user._id);
+      setIsUserLoggedIn(true);
+
       history.push("/");
     } catch (error) {
-      console.log(error);
+      toast({ type: "error", message: error.message });
+    } finally {
       setIsSignUpButtonLoading(false);
-
-      // toast({ type: "error", message: error.message });
     }
   };
 

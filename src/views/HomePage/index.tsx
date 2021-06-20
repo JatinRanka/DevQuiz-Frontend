@@ -1,20 +1,25 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import homePageImage from "../../assets/images/home-page.svg";
 import { QuizzesList } from "../../components";
 import { Quiz } from "../../data/quiz/index.types";
+import { toast } from "../../helper/toast";
 import "./index.scss";
 
 const HomePage = (): JSX.Element => {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+  const [isQuizzesLoading, setIsQuizzesLoading] = useState<Boolean>(false);
 
   const fetchQuizzes = async () => {
     try {
+      setIsQuizzesLoading(true);
       const { data } = await axios.get("http://localhost:5000/api/quizzes/");
       const { quizzes }: { quizzes: Quiz[] } = data;
       setQuizzes(quizzes);
     } catch (error) {
-      console.log(error);
+      toast({ type: "error", message: error.message });
+    } finally {
+      setIsQuizzesLoading(false);
     }
   };
 
@@ -41,7 +46,7 @@ const HomePage = (): JSX.Element => {
 
       <p className="heading-3 my-1 quizzes-heading">Quizzes</p>
 
-      <QuizzesList quizzes={quizzes} />
+      <QuizzesList isQuizzesLoading={isQuizzesLoading} quizzes={quizzes} />
     </div>
   );
 };

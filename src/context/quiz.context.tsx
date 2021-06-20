@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer, Dispatch } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  Dispatch,
+  ReactNode,
+} from "react";
 import { Quiz } from "../data/quiz/index.types";
 
 export type QuizStateType = {
@@ -16,7 +22,7 @@ type ACTIONTYPE =
   | { type: "UPDATE_SCORE"; payload: { score: number } };
 
 const quizReducer = (state: typeof quizInitialState, action: ACTIONTYPE) => {
-  const { type } = action; // TS error after using `type` directly in switch block instead of action.type
+  // const { type } = action; TS error after using `type` directly in switch block instead of action.type
 
   switch (action.type) {
     case "UPDATE_SCORE": {
@@ -53,7 +59,7 @@ export const useQuizContext = () => {
   return useContext(QuizContext);
 };
 
-export const QuizProvider = ({ children }: { children: any }) => {
+export const QuizProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(quizReducer, quizInitialState);
   return (
     <QuizContext.Provider value={{ state, dispatch }}>

@@ -5,13 +5,27 @@ import { useLocation } from "react-router";
 import axios from "axios";
 import { Quiz } from "../../data/quiz/index.types";
 import ScoreBoard from "../../components/ScoreBoard";
-import { calcluateScore, getUserId } from "../../helper/common";
+import {
+  calcluateScore,
+  getAuthorizationToken,
+  getUserId,
+} from "../../helper/common";
 import "./index.scss";
+import { toast } from "../../helper/toast";
+import { API_ENDPOINT } from "../../constants";
 
 const LoadingComponent = () => {
   return (
     <div className="loading-icon-container">
       <Oval className="loading-icon" stroke="#000000" />
+    </div>
+  );
+};
+
+const QuizNotFoundComponent = () => {
+  return (
+    <div>
+      <p className="heading-4">Quiz not found</p>
     </div>
   );
 };
@@ -27,13 +41,13 @@ const QuizViewPage = () => {
   const fetchQuiz = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.get(
-        `http://localhost:5000/api/quizzes/${quizId}`
-      );
+      const { data } = await axios.get(`${API_ENDPOINT}/${quizId}`, {
+        headers: { Authorization: getAuthorizationToken() },
+      });
       const { quiz }: { quiz: Quiz } = data;
       setQuiz(quiz);
     } catch (error) {
-      console.log(error);
+      toast({ type: "error", message: error.message });
     } finally {
       setIsLoading(false);
     }
@@ -46,11 +60,12 @@ const QuizViewPage = () => {
   }) => {
     try {
       const { data } = await axios.post(
-        `http://localhost:5000/api/quizzes/${quizId}/leaderboard`,
+        `${API_ENDPOINT}/${quizId}/leaderboard`,
         {
           userId: getUserId(),
           score: totalUserScore,
-        }
+        },
+        { headers: { Authorization: getAuthorizationToken() } }
       );
 
       const {
@@ -95,23 +110,25 @@ const QuizViewPage = () => {
 
       setShowScoreBoard(true);
     } catch (error) {
-      console.log(error);
+      toast({ type: "error", message: error.message });
     } finally {
       setIsLoading(false);
     }
   };
 
-  if (!quiz)
-    return (
-      <div>
-        <p className="heading-4">Quiz not found</p>
-      </div>
-    );
+  // if (!quiz)
+  //   return (
+  //     <div>
+  //       <p className="heading-4">Quiz not found</p>
+  //     </div>
+  //   );
 
   return (
     <div id="quiz-view-page">
       {isLoading ? (
         <LoadingComponent />
+      ) : !quiz ? (
+        <QuizNotFoundComponent />
       ) : showScoreBoard ? (
         <ScoreBoard quiz={quiz} />
       ) : (

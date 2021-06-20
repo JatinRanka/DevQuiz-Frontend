@@ -1,10 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { API_ENDPOINT } from "../../constants";
+import { useUsercontext } from "../../context/user.context";
+import { toast } from "../../helper/toast";
 import "./index.scss";
 
 const Login = () => {
   const history = useHistory();
+  const { setIsUserLoggedIn } = useUsercontext();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -16,21 +20,19 @@ const Login = () => {
       event.preventDefault();
       setIsLoginButtonLoading(true);
 
-      const { data } = await axios.post(
-        "http://localhost:5000/api/users/login",
-        {
-          ...formData,
-        }
-      );
+      const { data, headers } = await axios.post(`${API_ENDPOINT}/login`, {
+        ...formData,
+      });
 
       const { user } = data;
 
-      console.log({ user });
-
+      window.localStorage.setItem("Authorization", headers.authorization);
       window.localStorage.setItem("userId", user._id);
+      setIsUserLoggedIn(true);
       history.push("/");
     } catch (error) {
-      console.log(error);
+      toast({ type: "error", message: error.message });
+    } finally {
       setIsLoginButtonLoading(false);
     }
   };

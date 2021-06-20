@@ -6,6 +6,7 @@
   column-gap: 2rem;
   align-items: center;
   justify-content: center;
+  padding-bottom: 3rem;
 
   .quiz {
     width: 90%;
@@ -20,6 +21,10 @@
     padding: 1rem;
     text-align: center;
     cursor: pointer;
+
+    * {
+      pointer-events: none;
+    }
 
     &.bg-color-0 {
       background-color: rgb(181, 220, 205);
