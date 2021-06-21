@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import homePageImage from "../../assets/images/home-page.svg";
 import { QuizzesList } from "../../components";
+import { API_ENDPOINT } from "../../constants";
 import { Quiz } from "../../data/quiz/index.types";
 import { toast } from "../../helper/toast";
 import "./index.scss";
@@ -13,7 +14,7 @@ const HomePage = (): JSX.Element => {
   const fetchQuizzes = async () => {
     try {
       setIsQuizzesLoading(true);
-      const { data } = await axios.get("http://localhost:5000/api/quizzes/");
+      const { data } = await axios.get(`${API_ENDPOINT}/quizzes`);
       const { quizzes }: { quizzes: Quiz[] } = data;
       setQuizzes(quizzes);
     } catch (error) {
