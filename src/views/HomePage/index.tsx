@@ -4,6 +4,7 @@ import homePageImage from "../../assets/images/home-page.svg";
 import { QuizzesList } from "../../components";
 import { API_ENDPOINT } from "../../constants";
 import { Quiz } from "../../data/quiz/index.types";
+import { getErrorMessage } from "../../helper/common";
 import { toast } from "../../helper/toast";
 import "./index.scss";
 
@@ -18,7 +19,7 @@ const HomePage = (): JSX.Element => {
       const { quizzes }: { quizzes: Quiz[] } = data;
       setQuizzes(quizzes);
     } catch (error) {
-      toast({ type: "error", message: error.message });
+      toast({ type: "error", message: getErrorMessage(error) });
     } finally {
       setIsQuizzesLoading(false);
     }

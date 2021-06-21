@@ -2,6 +2,7 @@ import { Question } from "../data/quiz/index.types";
 import { toast } from "./toast";
 import { History } from 'history';
 import { UserContextType } from "../context/user.context";
+import axios, { AxiosError } from "axios";
 
 export const isUserLoggedIn = (): boolean => {
   return localStorage.getItem("userId") ? true : false;
@@ -20,7 +21,6 @@ export const handleLogoutUser = (setIsUserLoggedIn: UserContextType["setIsUserLo
   setIsUserLoggedIn(false);
   redirectToHomePage(history);
   toast({type: 'success', message: 'Logout successful.'})
-  
 }
 
 export const calcluateScore = ({
@@ -49,3 +49,14 @@ export const calcluateScore = ({
     totalPossibleScore,
   };
 };
+
+export const getErrorMessage = (error:  Error | AxiosError): String => {
+  let message;
+  
+  if (axios.isAxiosError(error))  
+    message = error?.response?.data?.message
+  
+  message = message || error?.message || 'Some error occurred. Try again after some time.';
+
+  return message;
+}

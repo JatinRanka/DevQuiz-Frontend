@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { API_ENDPOINT } from "../../constants";
 import { useUsercontext } from "../../context/user.context";
+import { getErrorMessage } from "../../helper/common";
 import { toast } from "../../helper/toast";
 import "./index.scss";
 
@@ -33,7 +34,7 @@ const SignUp = () => {
 
       history.push("/");
     } catch (error) {
-      toast({ type: "error", message: error.message });
+      toast({ type: "error", message: getErrorMessage(error) });
     } finally {
       setIsSignUpButtonLoading(false);
     }

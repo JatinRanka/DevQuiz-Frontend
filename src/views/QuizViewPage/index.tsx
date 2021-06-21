@@ -8,6 +8,7 @@ import ScoreBoard from "../../components/ScoreBoard";
 import {
   calcluateScore,
   getAuthorizationToken,
+  getErrorMessage,
   getUserId,
 } from "../../helper/common";
 import "./index.scss";
@@ -47,7 +48,7 @@ const QuizViewPage = () => {
       const { quiz }: { quiz: Quiz } = data;
       setQuiz(quiz);
     } catch (error) {
-      toast({ type: "error", message: error.message });
+      toast({ type: "error", message: getErrorMessage(error) });
     } finally {
       setIsLoading(false);
     }
@@ -110,7 +111,7 @@ const QuizViewPage = () => {
 
       setShowScoreBoard(true);
     } catch (error) {
-      toast({ type: "error", message: error.message });
+      toast({ type: "error", message: getErrorMessage(error) });
     } finally {
       setIsLoading(false);
     }

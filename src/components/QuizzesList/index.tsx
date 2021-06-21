@@ -1,10 +1,10 @@
-import React from "react";
 import { useHistory } from "react-router";
 import { useUsercontext } from "../../context/user.context";
 import { Quiz } from "../../data/quiz/index.types";
 import { toast } from "../../helper/toast";
 import { Oval } from "react-loading-icons";
 import "./index.scss";
+import { getErrorMessage } from "../../helper/common";
 
 const QuizzesList = ({
   quizzes,
@@ -25,7 +25,7 @@ const QuizzesList = ({
 
       history.push(`/quizzes/${quizId}`);
     } catch (error) {
-      toast({ type: "error", message: error.message });
+      toast({ type: "error", message: getErrorMessage(error) });
     }
   };
 
