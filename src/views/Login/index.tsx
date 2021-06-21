@@ -20,9 +20,12 @@ const Login = () => {
       event.preventDefault();
       setIsLoginButtonLoading(true);
 
-      const { data, headers } = await axios.post(`${API_ENDPOINT}/login`, {
-        ...formData,
-      });
+      const { data, headers } = await axios.post(
+        `${API_ENDPOINT}/users/login`,
+        {
+          ...formData,
+        }
+      );
 
       const { user } = data;
 
