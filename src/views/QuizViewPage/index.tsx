@@ -42,7 +42,7 @@ const QuizViewPage = () => {
   const fetchQuiz = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.get(`${API_ENDPOINT}/${quizId}`, {
+      const { data } = await axios.get(`${API_ENDPOINT}/quizzes/${quizId}`, {
         headers: { Authorization: getAuthorizationToken() },
       });
       const { quiz }: { quiz: Quiz } = data;
@@ -61,7 +61,7 @@ const QuizViewPage = () => {
   }) => {
     try {
       const { data } = await axios.post(
-        `${API_ENDPOINT}/${quizId}/leaderboard`,
+        `${API_ENDPOINT}/quizzes/${quizId}/leaderboard`,
         {
           userId: getUserId(),
           score: totalUserScore,
