@@ -1,0 +1,27 @@
+.navbar {
+  .account {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    column-gap: 0.7rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .navbar {
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+
+    .navbar__right {
+      margin-right: 0rem;
+    }
+
+    .account-icon {
+      margin-right: 0;
+    }
+
+    .account {
+      column-gap: 0.3rem;
+    }
+  }
+}
