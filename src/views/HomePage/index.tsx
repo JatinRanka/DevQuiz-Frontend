@@ -35,8 +35,8 @@ const HomePage = (): JSX.Element => {
         <div className="description">
           <p className="heading-3">Welcome to DevQuiz</p>
           <p className="heading-5">
-            Lorem ipsum dolor sit amet, consectetur adipiscing . Lorem ipsum
-            dolor sit amet, consectetur adipiscing .{" "}
+            DevQuiz is a quiz application to test your Programming skills, with
+            a timer for added pressure. Have fun testing your skills :)
           </p>
 
           <button className="btn primary-btn">Explore Quizzes</button>
