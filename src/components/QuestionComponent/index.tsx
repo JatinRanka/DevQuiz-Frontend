@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Question } from "../../data/quiz/index.types";
 import "./index.scss";
-const TIMER_DURATION = 5;
+const TIMER_DURATION = 30;
 
 // Types
 type GetOptionStyle = {
