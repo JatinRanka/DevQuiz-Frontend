@@ -1,28 +1,9 @@
 import { useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import { GetOptionStyle, QuestionComponentType } from "./index.types";
+import { QuestionComponentType } from "../../data/quiz/index.types";
+import { getOptionStyle } from "../../helper/common";
 import "./index.scss";
 const TIMER_DURATION = 30;
-
-// Helper function
-const getOptionStyle = ({
-  showAnswers,
-  userSelectedAnswerIndex,
-  currentOptionIndex,
-  isCorrectAnswer,
-}: GetOptionStyle): string => {
-  let style = "";
-
-  if (!showAnswers) return style;
-  if (isCorrectAnswer) {
-    style = "success";
-  }
-  if (userSelectedAnswerIndex === currentOptionIndex && !isCorrectAnswer) {
-    style = "danger";
-  }
-
-  return style;
-};
 
 // Component
 const QuestionComponent = ({

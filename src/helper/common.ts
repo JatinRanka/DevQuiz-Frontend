@@ -1,4 +1,4 @@
-import { Question } from "../data/quiz/index.types";
+import { Question, GetOptionStyle } from "../data/quiz/index.types";
 import { toast } from "./toast";
 import { History } from 'history';
 import { UserContextType } from "../context/user.context";
@@ -59,4 +59,23 @@ export const getErrorMessage = (error:  Error | AxiosError): String => {
   message = message || error?.message || 'Some error occurred. Try again after some time.';
 
   return message;
-}
+};
+
+export const getOptionStyle = ({
+  showAnswers,
+  userSelectedAnswerIndex,
+  currentOptionIndex,
+  isCorrectAnswer,
+}: GetOptionStyle): string => {
+  let style = "";
+
+  if (!showAnswers) return style;
+  if (isCorrectAnswer) {
+    style = "success";
+  }
+  if (userSelectedAnswerIndex === currentOptionIndex && !isCorrectAnswer) {
+    style = "danger";
+  }
+
+  return style;
+};
