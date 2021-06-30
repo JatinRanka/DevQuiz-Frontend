@@ -1,4 +1,9 @@
 #question-component-container {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 1rem;
+
   .header {
     display: flex;
     align-items: center;
@@ -20,6 +25,7 @@
     padding: 1rem;
     border-radius: 0.5rem;
     cursor: pointer;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
     p {
       pointer-events: none;
