@@ -1,22 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import { Question } from "../../data/quiz/index.types";
+import { GetOptionStyle, QuestionComponentType } from "./index.types";
 import "./index.scss";
 const TIMER_DURATION = 30;
-
-// Types
-type GetOptionStyle = {
-  showAnswers: boolean;
-  userSelectedAnswerIndex: number;
-  currentOptionIndex: number;
-  isCorrectAnswer: boolean;
-};
-
-type QuestionComponentType = {
-  question: Question;
-  currentQuestionIndex: number;
-  totalQuestions: number;
-};
 
 // Helper function
 const getOptionStyle = ({
